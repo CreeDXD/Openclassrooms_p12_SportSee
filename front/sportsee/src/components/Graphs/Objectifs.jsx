@@ -1,6 +1,5 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, Rectangle } from 'recharts';
 // import data from '../../data/mock/AverageSessions.json'
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {ApiSession} from '../../service/ApiSession'

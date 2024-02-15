@@ -1,7 +1,5 @@
 import { Pie, PieChart, Legend } from 'recharts';
-
 // import data from '../../data/mock/Info.json'
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ApiUser } from '../../service/ApiUser';

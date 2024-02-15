@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DataCall } from './CallApi';
-import { Session } from '../formatage/Session';
+import  Session  from '../formatage/Session';
 
 export const ApiSession = (id) => {
   const [sessions, setSessions] = useState();
@@ -12,8 +12,7 @@ export const ApiSession = (id) => {
 
   useEffect(() => {
     if (data) {
-      const sessionModel = new Session(data.data.id, data.data.sessions);
-      const formattedSessions = sessionModel.formatSessions();
+      const formattedSessions = Session( data.data.sessions );
 
       setSessions(formattedSessions);
     }

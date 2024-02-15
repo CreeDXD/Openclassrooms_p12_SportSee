@@ -1,4 +1,4 @@
-import {  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer } from 'recharts';
+import {  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useActivity } from '../../service/ApiAcvtivity'; 
@@ -9,43 +9,12 @@ function ActiviteQuotidienne() {
   const [userActivity, setUserActivity] = useState([]);
 
   const { activity, isLoading } = useActivity(params.id);
-
   useEffect(() => {
     if (activity) {
       setUserActivity(activity);
     }
   }, [activity]);
 
-  // return (
-  //   <ResponsiveContainer  width="70%" aspect={3.5}>
-  //       <BarChart width="100%" data={transformedData}>
-  //         <XAxis dataKey="index" tickLine={false} axisLine={false}  />
-  //         <YAxis 
-  //           tickLine={false}
-  //           axisLine={false}
-  //           orientation="left" 
-  //           type="number"
-  //           yAxisId="left"
-  //           domain={yAxisTicksRight}
-  //           ticks={yAxisTicksRight}
-  //         />
-  //         <YAxis 
-  //           tickLine={false}
-  //           axisLine={false}
-  //           orientation="right" 
-  //           type="number" 
-  //           domain={yAxisTicksLeft} 
-  //           ticks={yAxisTicksLeft}
-  //         />
-  //         <Legend /> 
-  //         <CartesianGrid vertical={false}/>
-  //         <Bar dataKey="kilogram" fill="#282D30" radius={[6, 6, 0, 0]} barSize={10} />
-  //         <Bar dataKey="calories" fill="#E60000" radius={[6, 6, 0, 0]} barSize={10} yAxisId="left"/>
-  //       </BarChart>   
-  //   </ResponsiveContainer>
-    
-    
-  // )
   const customTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (

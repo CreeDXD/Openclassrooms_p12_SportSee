@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DataCall } from './CallApi';
-import { User } from '../formatage/User';
+import User from '../formatage/User';
+import formatScore from '../formatage/formatScore';
  
 
 export const ApiUser = (id) => {
@@ -23,17 +24,11 @@ export const ApiUser = (id) => {
       else{
         todayOrNot = data.data.todayScore
       }
-      const userModel = new User(
-        data.data.id,
-        data.data.userInfos,
-        todayOrNot,
-        data.data.keyData
-      );
-      const formattedUserInfos = userModel.userInfos;
-      setUserInfos(formattedUserInfos);
-      const formattedScore = userModel.formatScore();
+      
+      setUserInfos(data.data.userInfos);
+      const formattedScore = formatScore(todayOrNot);
       setScore(formattedScore);
-      const formattedKeyData = userModel.formatKeyData();
+      const formattedKeyData = User(data.data.keyData);
       setKeyData(formattedKeyData);
     }
   }, [data]);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DataCall } from './CallApi';
-import { Performance } from '../formatage/Performance';
+import Performance  from '../formatage/Performance';
 
 export const usePerformances = (id) => {
   const [performances, setPerformances] = useState();
@@ -12,13 +12,7 @@ export const usePerformances = (id) => {
 
   useEffect(() => {
     if (data) {
-      const performanceModel = new Performance(
-        data.data.id,
-        data.data.kind,
-        data.data.data
-      );
-      const formattedPerformances = performanceModel.formatPerformance();
-
+      const formattedPerformances = Performance(data.data.kind, data.data.data);
       setPerformances(formattedPerformances);
     }
   }, [data]);

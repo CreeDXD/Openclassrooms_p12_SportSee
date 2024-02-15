@@ -1,43 +1,11 @@
+// for ApiUser
 import caloriesIcon from './../assets/calories-icon.png';
 import carbsIcon from './../assets/carbs-icon.png';
 import fatIcon from './../assets/fat-icon.png';
 import proteinIcon from './../assets/protein-icon.png';
 
-export class User {
-
-  constructor(userId, userInfos, score, keyData) {
-    this.id = userId
-    this.userInfos = userInfos
-    this.score = score
-    this.keyData = keyData
-  }
-
-  userInfos() {
-    return this.userIfos;
-  }
-
-    /**
-     * Get score data for Pie Chart
-     * @returns {Object[]} The score data formated for pie chart
-     */
-  formatScore() {
-    // need to render 2 pies to display score in %
-    return [
-      {
-        name: 'score',
-        value: this.score * 100,
-        fill: '#ff0000',
-      },
-      {
-        name: 'full',
-        value: 100 - this.score * 100,
-        fill: '#fbfbfb',
-      },
-    ];
-  }
-
-
-  getKeyDataTitle(type) {
+const User = ( keyData ) => {
+  const getKeyDataTitle = (type) => {
     switch (type) {
       case 'calorieCount':
         return 'Calories';
@@ -52,8 +20,7 @@ export class User {
     }
   }
 
-
-  getKeyDataIcon(type) {
+  const getKeyDataIcon = (type) => {
     switch (type) {
       case 'calorieCount':
         return caloriesIcon;
@@ -68,17 +35,18 @@ export class User {
     }
   }
 
-  formatKeyData() {
-    const formattedKeyDatas = [];
-    for (const [key, value] of Object.entries(this.keyData)) {
-      const formattedKeyData = {
-        icon: this.getKeyDataIcon(key),
-        count: value,
-        unit: key === 'calorieCount' ? 'kCal' : 'g',
-        title: this.getKeyDataTitle(key),
-      };
-      formattedKeyDatas.push(formattedKeyData);
-    }
-    return formattedKeyDatas;
-  }
+  const formattedKeyDatas = [];
+
+  for (const [key, value] of Object.entries(keyData)) {
+    const formattedKeyData = {
+      icon: getKeyDataIcon(key),
+      count: value,
+      unit: key === 'calorieCount' ? 'kCal' : 'g',
+      title: getKeyDataTitle(key),
+    };
+    formattedKeyDatas.push(formattedKeyData);
+  }  
+  
+  return formattedKeyDatas;
 }
+export default User

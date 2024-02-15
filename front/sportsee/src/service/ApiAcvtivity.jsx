@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DataCall } from './CallApi';
-import { Activity } from '../formatage/Activity';
+import Activity from '../formatage/Activity'
 
 export const useActivity = (id) => {
   const [activity, setActivity] = useState([]);
@@ -12,9 +12,7 @@ export const useActivity = (id) => {
 
   useEffect(() => {
     if (data) {
-      const activityModel = new Activity(data.data.id, data.data.sessions);
-      const formattedActivities = activityModel.formatActivities();
-
+      const formattedActivities = Activity(data.data.sessions)
       setActivity(formattedActivities);
     }
   }, [data]);
