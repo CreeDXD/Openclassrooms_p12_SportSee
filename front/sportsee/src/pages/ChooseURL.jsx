@@ -12,6 +12,7 @@ const ChooseURL = () => {
 
   return (
     <div>
+      <h1>Pour aller à la page utilisateur</h1>
       <select onChange={handleSelectChange} value={id || ''}>
         <option>choisie l'un des user</option>
         <option value="12">Karl (user18)</option>

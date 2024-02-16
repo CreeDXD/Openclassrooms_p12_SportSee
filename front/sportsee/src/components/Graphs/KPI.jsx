@@ -13,7 +13,7 @@ function KPI() {
   const params = useParams();
   const [userScore, setUserScore] = useState([]);
 
-  const { score, isLoading } = ApiUser(params.id);
+  const { score } = ApiUser(params.id);
   useEffect(() => {
     if (score) {
       setUserScore(score);
@@ -35,7 +35,7 @@ function KPI() {
     return (
     <div className='kpi'>
       <p className='kpi_title'>Score</p>
-      {!isLoading && score && (
+      
         <PieChart width={250} height={250}>
           <Pie
             data={data2}
@@ -64,7 +64,7 @@ function KPI() {
             wrapperStyle={{ top: '100px', left: '10px' }}
           />
         </PieChart>
-      )}
+      
     </div>        
     );
   }

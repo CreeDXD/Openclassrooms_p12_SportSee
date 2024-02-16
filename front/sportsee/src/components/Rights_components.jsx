@@ -7,16 +7,17 @@ function Right() {
   const params = useParams();
   const [userKeyData, setUserKeyData] = useState();
 
-  const { keyData, isLoading } = ApiUser(params.id);
+  const { keyData } = ApiUser(params.id);
 
   useEffect(() => {
     if (keyData) {
+      console.log(keyData)
       setUserKeyData(keyData);
     }
   }, [keyData]);
     return (
       <div className="right-component">
-        {!isLoading &&
+        {
           userKeyData &&
           userKeyData.map((data) => (
             <Stat

@@ -8,7 +8,7 @@ function Objectifs() {
   const params = useParams();
   const [userSessions, setUserSessions] = useState([]);
 
-  const { sessions, isLoading } = ApiSession(params.id);
+  const { sessions } = ApiSession(params.id);
 
   useEffect(() => {
     if (sessions) {

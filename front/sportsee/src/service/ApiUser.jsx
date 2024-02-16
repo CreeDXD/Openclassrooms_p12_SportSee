@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react';
 import { DataCall } from './CallApi';
 import User from '../formatage/User';
 import formatScore from '../formatage/formatScore';
+import mockData from '../mock/Info.json'
+import { useNavigate } from 'react-router-dom';
  
 
 export const ApiUser = (id) => {
   const [userInfos, setUserInfos] = useState();
   const [score, setScore] = useState([]);
   const [keyData, setKeyData] = useState([]);
+  const navigate = useNavigate()
 
-  const { data, error, isLoading } = DataCall({
+  const { data, error } = DataCall({
     method: 'GET',
     url: `/${id}`,
   });
+
   useEffect(() => {
-    
 
     if (data) {
       let todayOrNot
@@ -31,6 +34,17 @@ export const ApiUser = (id) => {
       const formattedKeyData = User(data.data.keyData);
       setKeyData(formattedKeyData);
     }
-  }, [data]);
-  return { userInfos, score, keyData, isLoading };
+    else if (id === 'mock'){
+      setUserInfos(mockData.data.userInfos);
+      const formattedScore = formatScore(mockData.data.todayScore);
+      setScore(formattedScore);
+      const formattedKeyData = User(mockData.data.keyData);
+      setKeyData(formattedKeyData);
+    }
+    else if(!data && id === 'mock'){
+      navigate('*')
+    }
+  }, [data,id]);
+
+  return { userInfos, score, keyData };
 };

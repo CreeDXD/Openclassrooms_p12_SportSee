@@ -1,6 +1,5 @@
 import React, { useState, useEffect, } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://localhost:3000/user';
 
@@ -8,23 +7,24 @@ export function DataCall(axiosParams){
 
     const [data, setData] = useState(undefined);
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate()
   
     const fetchData = async () => {
-      try {
-        const response = await axios.request(axiosParams);
-        setData(response.data);
-      } catch (error) {
-        setError(error);
-        navigate('*')
-      } finally {
-        setIsLoading(false);
-      }
+      const mockRegex = /mock/
+      console.log(mockRegex.test(axiosParams.url))
+      if(!mockRegex.test(axiosParams.url)){        
+        try {
+          const response = await axios.request(axiosParams);
+          setData(response.data);
+        } catch (error) {
+          setError(error);
+        }    
+      }else{
+        console.log('we are using mock data', mockRegex.test(axiosParams))
+      }    
     };
   
-    useEffect(() => {
-      fetchData();
+    useEffect(() => {      
+      fetchData();      
     }, []);
-    return { data, error, isLoading };
+    return { data, error };
 }

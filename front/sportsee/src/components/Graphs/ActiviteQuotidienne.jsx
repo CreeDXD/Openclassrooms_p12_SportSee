@@ -8,7 +8,7 @@ function ActiviteQuotidienne() {
   const params = useParams();
   const [userActivity, setUserActivity] = useState([]);
 
-  const { activity, isLoading } = useActivity(params.id);
+  const { activity } = useActivity(params.id);
   useEffect(() => {
     if (activity) {
       setUserActivity(activity);
@@ -39,7 +39,7 @@ function ActiviteQuotidienne() {
   return (
     <div className='bargraph_background'>
       <h4>Activité quotidienne</h4>
-      {!isLoading && userActivity && (
+      
         <BarChart width={750} height={220} data={userActivity}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="day" tickLine={false} />
@@ -82,7 +82,7 @@ function ActiviteQuotidienne() {
             radius={[3, 3, 0, 0]}
           />
         </BarChart>
-      )}
+      
     </div>
   );
 }

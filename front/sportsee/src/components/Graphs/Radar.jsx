@@ -7,7 +7,7 @@ function Radars() {
   const params = useParams();
   const [userPerformances, setUserPerformances] = useState();
 
-  const { performances, isLoading } = usePerformances(params.id);
+  const { performances} = usePerformances(params.id);
   useEffect(() => {
     if (performances) {
       setUserPerformances(performances);
