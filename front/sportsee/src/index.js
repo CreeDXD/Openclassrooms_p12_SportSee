@@ -10,7 +10,7 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <Router>      
+    <Router basename="/Openclassrooms_p12_SportSee/">      
       <Routes>
         <Route exact path="/" element={<ChooseURL />} />
         <Route exact path="/:id" element={<Home />} />
